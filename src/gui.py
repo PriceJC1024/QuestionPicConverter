@@ -17,6 +17,7 @@ class MainWindow:
 
         # App instance initialization
         self.root: ctk.CTk = root
+        self.root.protocol("WM_DELETE_WINDOW", self._on_closing)
         self.root.title(config.APP_TITLE)
         self.root.geometry(config.APP_WINDOW_SIZE)
         self.root.resizable(config.APP_WINDOW_HORI_RESIZABLE, config.APP_WINDOW_VERTI_RESIZABLE)
@@ -218,7 +219,7 @@ class MainWindow:
                                            ))
             self.logic_obj.json_to_excel()
 
-            self.root.after(0, lambda: self.progress_bar.set(1.0),)
+            self.root.after(0, lambda: self.progress_bar.set(1.0), )
 
             self.root.after(0,
                             lambda: CTkMessagebox(title="执行完成",
@@ -241,7 +242,7 @@ class MainWindow:
                                                   icon_size=(40, 40),
                                                   font=("Arial", 16)))
         finally:
-            self.root.after(0, lambda: self.main_process_bt.configure(text="开始执行", state=ctk.NORMAL))
+            self.root.after(0, lambda: self.main_process_bt.configure(text="Proceed", state=ctk.NORMAL))
             self.progress_bar.grid_forget()
 
     def _smooth_progress_animation(self) -> None:
@@ -307,6 +308,14 @@ class MainWindow:
         self.api_key_content: str = self.api_input_entry.get().strip()
         self.api_key_content = Validator.validate_api_string(self.api_key_content)
         self.api_show_label.configure(text=f"{self.api_key_content}", text_color="red")
+
+    def _on_closing(self) -> None:
+        """
+        Callback function when user close this app.
+        :return: None
+        """
+        self.logic_obj.remove_json_folder()
+        self.root.destroy()
 
     def launch(self) -> None:
         """

@@ -166,5 +166,12 @@ class Logic:
         final.to_excel(filename, index=False)
 
         # Delete JSON files folder.
+        self.remove_json_folder()
+
+    def remove_json_folder(self) -> None:
+        """
+        Remove JSON files folder if it exists.
+        :return: None
+        """
         if Path(self.j_folder_name).exists():
             rmtree(Path(self.j_folder_name))
