@@ -25,7 +25,7 @@ class MainWindow:
         self.pic_path_collection = None
         self.smooth_progress_target = 0
         self.smooth_progress_running = False
-        self.op_value = config.TF_L_PROMPT
+        self.op_value = config.IELTS_O_PROMPT
         self.ai_model = config.DEFAULT_AI
 
         # Initialize backend logic
@@ -222,8 +222,8 @@ class MainWindow:
             self.root.after(0, lambda: self.progress_bar.set(1.0), )
 
             self.root.after(0,
-                            lambda: CTkMessagebox(title="执行完成",
-                                                  message="图像识别完成，数据已成功写入表格！",
+                            lambda: CTkMessagebox(title="Done",
+                                                  message="Image recognition completed. Data has been successfully written to the table!",
                                                   width=400,
                                                   height=250,
                                                   icon="check",
@@ -234,7 +234,7 @@ class MainWindow:
         except Exception as e:
             err_msg = f"错误：{str(e)}"
             self.root.after(0,
-                            lambda: CTkMessagebox(title="错误",
+                            lambda: CTkMessagebox(title="Error",
                                                   message=err_msg,
                                                   width=400,
                                                   height=250,
