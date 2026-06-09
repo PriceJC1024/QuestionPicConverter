@@ -1,11 +1,12 @@
 APP_TITLE: str = "QuestionPicConverter  Ver.2.1"
-APP_WIN_TITLE: str = "~ 题图识别制表工具 Ver.2.1 ~"
-APP_DESC: str = "识别不同类型的题目截图，提取内容到excel表格。\n【警告】AI识别不能保证100%准确，请勿跳过人工审查步骤。"
+APP_WIN_TITLE: str = "~ Screenshot Recognition & Spreadsheet Tool Ver.2.1 ~"
+APP_DESC: str = """Identify screenshots of various question types and extract content into Excel spreadsheets.
+Warning: AI recognition is not 100% accurate. Manual review is mandatory."""
 
 APPEARANCE_MODE: str = "Dark"
 COLOR_THEME = "blue"
 DEFAULT_FONT_SIZE: int = 19
-APP_WINDOW_SIZE: str = "600x500"
+APP_WINDOW_SIZE: str = "790x500"
 APP_WINDOW_HORI_RESIZABLE: bool = False
 APP_WINDOW_VERTI_RESIZABLE: bool = False
 
@@ -102,17 +103,17 @@ TF_BS_PROMPT: str = """
 
 """
 
-MODE_OPS: list = ["雅思口语", "托福听力", "托福阅读（选择题）", "托福写作(组句题)"]
+MODE_OPS: list = ["IELTS Speaking", "TOEFL Listening", "TOEFL Reading (Multiple Choice)", "TOEFL Writing (Build Sentences)"]
 PROMPT_MAP: dict = {
-    "托福听力": TF_L_PROMPT,
-    "雅思口语": IELTS_O_PROMPT,
-    "托福阅读（选择题）": TF_R_PROMPT,
-    "托福写作(组句题)": TF_BS_PROMPT,
+    "TOEFL Listening": TF_L_PROMPT,
+    "IELTS Speaking": IELTS_O_PROMPT,
+    "TOEFL Reading (Multiple Choice)": TF_R_PROMPT,
+    "TOEFL Writing (Build Sentences)": TF_BS_PROMPT,
 }
 
-AI_MODEL_OPS: list = ["qwen3.7-plus（准确，稍慢，便宜）", "kimi-k2.6（准确，极快，贵）"]
+AI_MODEL_OPS: list = ["qwen3.7-plus (High accuracy, moderate speed, low cost)", "kimi-k2.6 (High accuracy, fast, high cost)"]
 AI_MAP: dict = {
-    "qwen3.7-plus（准确，稍慢，便宜）": "qwen3.7-plus",
-    "kimi-k2.6（准确，极快，贵）": "kimi-k2.6",
+    "qwen3.7-plus (High accuracy, moderate speed, low cost)": "qwen3.7-plus",
+    "kimi-k2.6 (High accuracy, fast, high cost)": "kimi-k2.6",
 }
-DEFAULT_AI = AI_MAP["qwen3.7-plus（准确，稍慢，便宜）"]
+DEFAULT_AI = AI_MAP["qwen3.7-plus (High accuracy, moderate speed, low cost)"]
