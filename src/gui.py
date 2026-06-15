@@ -398,6 +398,6 @@ class Validator:
         :return: simplified api key
         """
         simp_api_key: str = api_key
-        if len(api_key) > 12:
+        if (len(api_key) > 12) and ("Failed to read the API Key!" not in api_key):
             simp_api_key = api_key[:6] + ("*" * 6) + api_key[-6:]
         return simp_api_key
