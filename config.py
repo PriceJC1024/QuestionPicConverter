@@ -1,5 +1,5 @@
 APP_TITLE: str = "QuestionPicConverter  Ver.2.2"
-APP_WIN_TITLE: str = "~ Screenshot Recognition & Spreadsheet Tool Ver.2.1 ~"
+APP_WIN_TITLE: str = "~ Screenshot Recognition & Spreadsheet Tool ~"
 APP_DESC: str = """Identify screenshots of various question types and extract content into Excel spreadsheets.
 Warning: AI recognition is not 100% accurate. Manual review is mandatory."""
 
