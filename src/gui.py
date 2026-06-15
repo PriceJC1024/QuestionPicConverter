@@ -223,7 +223,7 @@ class MainWindow:
 
             self.root.after(0,
                             lambda: CTkMessagebox(title="Done",
-                                                  message="Image recognition completed. Data has been successfully written to the table!",
+                                                  message="Image recognition completed. Data has been successfully written to the .xlsx file!",
                                                   width=400,
                                                   height=250,
                                                   icon="check",
@@ -293,7 +293,8 @@ class MainWindow:
 
         self.api_key_content: str = self.api_input_entry.get().strip()
         self.api_key_content = Validator.validate_api_string(self.api_key_content)
-        self.api_show_label.configure(text=f"{self.api_key_content}", text_color="red")
+        simp_api: str = Validator.simplify_api_key(self.api_key_content)
+        self.api_show_label.configure(text=f"{simp_api}", text_color="red")
 
     def _on_input_change(self, event) -> None:
         """
@@ -307,7 +308,8 @@ class MainWindow:
         """
         self.api_key_content: str = self.api_input_entry.get().strip()
         self.api_key_content = Validator.validate_api_string(self.api_key_content)
-        self.api_show_label.configure(text=f"{self.api_key_content}", text_color="red")
+        simp_api: str = Validator.simplify_api_key(self.api_key_content)
+        self.api_show_label.configure(text=f"{simp_api}", text_color="red")
 
     def _on_closing(self) -> None:
         """
@@ -383,11 +385,19 @@ class Validator:
         :return: Original valid API Key if passed checks; error message string if validation failed
         """
         org_api_content = org_api_content.strip()
-        if re.search(r'[^a-zA-Z0-9-]', org_api_content):
-            return "The API Key can only contain letters, numbers and hyphens!"
-        elif len(org_api_content) >= 40:
-            return "The API Key is too long. Please check it!"
-        elif len(org_api_content) == 0:
+        if len(org_api_content) <= 0:
             return "Failed to read the API Key!"
         else:
             return org_api_content
+
+    @staticmethod
+    def simplify_api_key(api_key: str) -> str:
+        """
+        Replaced some characters of api keys with "*" in order to display.
+        :param api_key: the cleaned api key
+        :return: simplified api key
+        """
+        simp_api_key: str = api_key
+        if len(api_key) > 12:
+            simp_api_key = api_key[:6] + ("*" * 6) + api_key[-6:]
+        return simp_api_key
